@@ -14,6 +14,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+
 import javax.sql.DataSource;
 import java.util.Properties;
 
@@ -34,7 +35,7 @@ public class DataConfig {
 
         //JDBC
         lcemf.setDataSource(dataSource());
-        lcemf.setPersistenceUnitName("SecPersistenceUnit");
+        lcemf.setPersistenceUnitName("SecurityPersistenceUnit");
         lcemf.setPackagesToScan("com.kun.models");
 
         //Hibernate

@@ -36,27 +36,27 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     public void configure(WebSecurity web) {
-        web
-                .ignoring()
-                .antMatchers("/js/**", "images/**", "/css/**", "/resources/**", "/scripts/**");
+//        web
+//                .ignoring()
+//                .antMatchers("/js/**", "images/**", "/css/**", "/resources/**", "/scripts/**");
     }
 
     protected void configure(HttpSecurity http) throws Exception{
-        http
-                .authorizeRequests()
-                //.antMatchers("/").permitAll()
-                .antMatchers("/contactus").permitAll()
-                .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/subscriber/**").hasRole("USER")
-                .antMatchers("/all/**").hasAnyRole("ADMIN", "USER")
-                .anyRequest().authenticated()
-                .and()
-                .formLogin().loginPage("/login").loginProcessingUrl("/loginAction").defaultSuccessUrl("/", true).permitAll()
-                .and()
-                .logout().logoutSuccessUrl("/login").permitAll()
-                .and()
-                .exceptionHandling().accessDeniedPage("/403")
-                .and()
-                .csrf().disable();
+//        http
+//                .authorizeRequests()
+//                //.antMatchers("/").permitAll()
+//                .antMatchers("/contactus").permitAll()
+//                .antMatchers("/admin/**").hasRole("ADMIN")
+//                .antMatchers("/subscriber/**").hasRole("USER")
+//                .antMatchers("/all/**").hasAnyRole("ADMIN", "USER")
+//                .anyRequest().authenticated()
+//                .and()
+//                .formLogin().loginPage("/login").loginProcessingUrl("/loginAction").defaultSuccessUrl("/", true).permitAll()
+//                .and()
+//                .logout().logoutSuccessUrl("/login").permitAll()
+//                .and()
+//                .exceptionHandling().accessDeniedPage("/403")
+//                .and()
+//                .csrf().disable();
     }
 }

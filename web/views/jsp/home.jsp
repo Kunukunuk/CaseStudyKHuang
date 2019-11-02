@@ -11,6 +11,7 @@
     <title>Home Tab</title>
 </head>
 <body>
+<jsp:include page="menu.jsp"></jsp:include>
 This is the home
 </body>
 </html>
