@@ -1,4 +1,4 @@
-package com.kun.config;
+package com.kun.configs;
 
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 
