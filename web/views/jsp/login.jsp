@@ -11,6 +11,7 @@
     <title>Login</title>
 </head>
 <body>
+<jsp:include page="menu.jsp"></jsp:include>
 To Login
 </body>
 </html>
