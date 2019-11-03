@@ -11,7 +11,9 @@
     <title>About</title>
 </head>
 <body>
-<jsp:include page="menu.jsp"></jsp:include>
+<div id="header">
+    <jsp:include page="menu.jsp"></jsp:include>
+</div>
 This is the about page
 </body>
 </html>

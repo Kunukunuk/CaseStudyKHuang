@@ -10,8 +10,13 @@
 <head>
     <title>Home Tab</title>
 </head>
-<body>
-<jsp:include page="menu.jsp"></jsp:include>
+<body class="p-3 mb-2 bg-dark text-white">
+<div id="header">
+    <jsp:include page="menu.jsp"></jsp:include>
+</div>
 This is the home
+<div class="border border-danger" style="background-color: red;height: 250px;width: 250px;">
+
+</div>
 </body>
 </html>
