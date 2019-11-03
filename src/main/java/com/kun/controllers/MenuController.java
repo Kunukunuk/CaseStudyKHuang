@@ -20,4 +20,28 @@ public class MenuController {
         return mav;
     }
 
+    @RequestMapping("/profile")
+    public ModelAndView getProfile() {
+        ModelAndView mav = new ModelAndView("profile");
+        return mav;
+    }
+
+    @RequestMapping("/addparking")
+    public ModelAndView getAddParkingForm() {
+        ModelAndView mav = new ModelAndView("addparking");
+        return mav;
+    }
+
+    @RequestMapping("/login")
+    public ModelAndView getLoginForm() {
+        ModelAndView mav = new ModelAndView("login");
+        return mav;
+    }
+
+    @RequestMapping("/register")
+    public ModelAndView getRegisterForm() {
+        ModelAndView mav = new ModelAndView("register");
+        return mav;
+    }
+
 }

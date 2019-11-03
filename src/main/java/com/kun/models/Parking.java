@@ -1,9 +1,6 @@
 package com.kun.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -11,7 +8,7 @@ import java.util.Date;
 public class Parking {
 
     @Id
-    @Column(name = "pid", nullable = false)
+    @Column(name = "parkingid", nullable = false)
     private int PID;
 
     @Column(name = "length", nullable = false)
@@ -29,7 +26,8 @@ public class Parking {
     @Column(name = "availableEnd", nullable = false)
     private Date endDate;
 
-    @Column(name = "username", nullable = false)
+    @OneToOne
+    @JoinColumn(name = "username", nullable = false)
     private User user;
 
     @Column(name = "price", nullable = false)
