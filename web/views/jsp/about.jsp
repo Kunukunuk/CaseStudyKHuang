@@ -10,7 +10,8 @@
 <head>
     <title>About</title>
 </head>
-<body>
+<body class="bg-dark text-white">
+<jsp:include page="boostrap.jsp"></jsp:include>
 <div id="header">
     <jsp:include page="menu.jsp"></jsp:include>
 </div>

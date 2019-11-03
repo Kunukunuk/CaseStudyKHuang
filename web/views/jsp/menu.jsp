@@ -21,6 +21,12 @@
         <li class="nav-item">
             <a class="nav-link" href="${pageContext.request.contextPath}/about">About</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="${pageContext.request.contextPath}/profile">Profile</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="${pageContext.request.contextPath}/add">Add Parking</a>
+        </li>
     </ul>
 </nav>
 
