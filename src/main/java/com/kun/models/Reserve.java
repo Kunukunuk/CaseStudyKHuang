@@ -2,21 +2,24 @@ package com.kun.models;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "reserves")
 public class Reserve {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "rid", nullable = false)
     private int RID;
 
     @Column(name = "reserveDate", nullable = false)
     private Date creationDate;
 
-    @OneToOne
+    @OneToMany
     @JoinColumn(name = "parkingid", nullable = false)
-    private Parking parking;
+    private Set<Parking> parking = new HashSet<Parking>();
 
     @Column(name = "price", nullable = false)
     private int price;
@@ -45,14 +48,6 @@ public class Reserve {
         this.creationDate = creationDate;
     }
 
-    public Parking getParking() {
-        return parking;
-    }
-
-    public void setParking(Parking parking) {
-        this.parking = parking;
-    }
-
     public int getPrice() {
         return price;
     }
@@ -75,5 +70,13 @@ public class Reserve {
 
     public void setPayment(Payment payment) {
         this.payment = payment;
+    }
+
+    public Set<Parking> getParking() {
+        return parking;
+    }
+
+    public void setParking(Set<Parking> parking) {
+        this.parking = parking;
     }
 }

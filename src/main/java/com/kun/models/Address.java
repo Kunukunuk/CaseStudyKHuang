@@ -1,15 +1,13 @@
 package com.kun.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "addresses")
 public class Address {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "aid", nullable = false)
     private int AID;
 
@@ -24,6 +22,10 @@ public class Address {
 
     @Column(name = "state", nullable = false, length = 2)
     private String State;
+
+    @OneToOne(mappedBy = "address", cascade = CascadeType.ALL)
+    @JoinColumn(name = "parkingid", nullable = false)
+    private Parking parking;
 
     public int getAID() {
         return AID;
@@ -63,5 +65,13 @@ public class Address {
 
     public void setState(String state) {
         State = state;
+    }
+
+    public Parking getParking() {
+        return parking;
+    }
+
+    public void setParking(Parking parking) {
+        this.parking = parking;
     }
 }

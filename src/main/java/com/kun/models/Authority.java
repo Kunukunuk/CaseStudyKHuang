@@ -14,7 +14,7 @@ public class Authority {
     @Id
     @ManyToOne
     @JoinColumn(name = "username")
-    private User user;
+    private Credential credential;
 
     public String getAuthority() {
         return authority;
@@ -24,12 +24,12 @@ public class Authority {
         this.authority = authority;
     }
 
-    public User getUser() {
-        return user;
+    public Credential getCredential() {
+        return credential;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setCredential(Credential credential) {
+        this.credential = credential;
     }
 }
 
@@ -44,7 +44,7 @@ public class Authority {
         @Id
         @ManyToOne
         @JoinColumn(name = "username")
-        private User user;
+        private Credential credential;
 
         public String getSecurity() {
             return authority;
@@ -54,12 +54,12 @@ public class Authority {
             this.authority = security;
         }
 
-        public User getUser() {
-            return user;
+        public Credential getCredential() {
+            return credential;
         }
 
-        public void setUser(User user) {
-            this.user = user;
+        public void setCredential(Credential credential) {
+            this.credential = credential;
         }
 
         public static int getSerialID() {

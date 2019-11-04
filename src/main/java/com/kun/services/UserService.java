@@ -1,7 +1,8 @@
 package com.kun.services;
 
+import com.kun.models.Credential;
 import com.kun.models.User;
-import com.kun.repositories.UserRepository;
+import com.kun.repositories.CredentialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -13,17 +14,17 @@ import  org.springframework.security.core.userdetails.User.UserBuilder;
 public class UserService implements UserDetailsService {
 
     @Autowired
-    UserRepository userRepository;
+    CredentialRepository credentialRepository;
 
-    public void saveUser(User user) {
-        userRepository.save(user);
+    public void saveUser(Credential credential) {
+        credentialRepository.save(credential);
     }
 
     //Spring security specific
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        User user = userRepository.findByUsername(username);
+        Credential user = credentialRepository.findByUsername(username);
 
         UserBuilder userBuilder = null;
 
@@ -31,7 +32,6 @@ public class UserService implements UserDetailsService {
 
             userBuilder = org.springframework.security.core.userdetails.User.withUsername(username);
             userBuilder.password(user.getPassword());
-            userBuilder.disabled(!user.isEnabled());
             String[] authorities = user.getAuthorities().stream()
                     .map(
                             a-> a.getAuthority()).toArray(String[]::new);

@@ -1,8 +1,5 @@
 package com.kun.models;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -12,31 +9,30 @@ import java.util.Set;
 public class User {
 
     @Id
-    @Column(name = "username", nullable = false)
-    private String username;
-    @Column(name = "password", nullable = false)
-    private String password;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "userid", nullable = false)
+    private int userid;
+
     @Column(name = "name", nullable = false)
     private String name;
-    @Column(name = "enabled", nullable = false)
-    private boolean enabled;
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
-    private Set<Authority> authorities = new HashSet<>();
 
-    public String getUsername() {
-        return username;
+    @Column(name = "email", nullable = false, unique = true)
+    private String email;
+
+    @OneToOne
+    @MapsId
+    private Credential credential;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @Column(name = "parkingid")
+    private Set<Parking> parkings = new HashSet<Parking>();
+
+    public int getUserid() {
+        return userid;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setUserid(int userid) {
+        this.userid = userid;
     }
 
     public String getName() {
@@ -47,24 +43,24 @@ public class User {
         this.name = name;
     }
 
-    public boolean isEnabled() {
-        return enabled;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public Set<Authority> getAuthorities() {
-        return authorities;
+    public Credential getCredential() {
+        return credential;
     }
 
-    public void setAuthorities(Set<Authority> authorities) {
-        this.authorities = authorities;
+    public void setCredential(Credential credential) {
+        this.credential = credential;
     }
 
-    @Override
-    public String toString() {
-        return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
-    }
+    //    @Override
+//    public String toString() {
+//        return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+//    }
 }

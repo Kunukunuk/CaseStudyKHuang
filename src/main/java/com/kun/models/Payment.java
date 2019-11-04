@@ -1,9 +1,6 @@
 package com.kun.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -11,6 +8,7 @@ import java.util.Date;
 public class Payment {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "payid", nullable = false)
     private int payID;
 
@@ -31,6 +29,9 @@ public class Payment {
 
     @Column(name = "paysuccess", nullable = false)
     private boolean success;
+
+    @OneToOne
+    private Reserve reserve;
 
     public int getPayID() {
         return payID;
@@ -86,5 +87,13 @@ public class Payment {
 
     public void setSuccess(boolean success) {
         this.success = success;
+    }
+
+    public Reserve getReserve() {
+        return reserve;
+    }
+
+    public void setReserve(Reserve reserve) {
+        this.reserve = reserve;
     }
 }

@@ -8,6 +8,7 @@ import java.util.Date;
 public class Parking {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "parkingid", nullable = false)
     private int PID;
 
@@ -26,12 +27,15 @@ public class Parking {
     @Column(name = "availableEnd", nullable = false)
     private Date endDate;
 
-    @OneToOne
-    @JoinColumn(name = "username", nullable = false)
+    @ManyToOne
     private User user;
 
     @Column(name = "price", nullable = false)
     private int price;
+
+    @OneToOne
+    @MapsId
+    private Address address;
 
     public int getPID() {
         return PID;
@@ -95,5 +99,13 @@ public class Parking {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }
