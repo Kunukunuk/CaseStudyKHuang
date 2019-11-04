@@ -1,8 +1,9 @@
 package com.kun.controllers;
 
+import com.kun.models.Credential;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -38,9 +39,10 @@ public class MenuController {
         return mav;
     }
 
-    @RequestMapping("/register")
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
     public ModelAndView getRegisterForm() {
         ModelAndView mav = new ModelAndView("register");
+        mav.addObject("userRegistrationObj", new Credential());
         return mav;
     }
 

@@ -11,6 +11,6 @@
     <title>Profile Page</title>
 </head>
 <body>
-
+Welcome ${name}
 </body>
 </html>
