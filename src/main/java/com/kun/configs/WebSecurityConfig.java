@@ -36,15 +36,25 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     public void configure(WebSecurity web) {
-//        web
-//                .ignoring()
-//                .antMatchers("/js/**", "images/**", "/css/**", "/resources/**", "/scripts/**");
+        web
+                .ignoring()
+                .antMatchers("/js/**", "images/**", "/css/**", "/resources/**", "/scripts/**");
     }
 
     protected void configure(HttpSecurity http) throws Exception{
+        http.authorizeRequests().antMatchers("/","/home/**","/product/**","/about/**","/contact/**","/login","/logout").permitAll();
+        http.authorizeRequests().antMatchers("/admin/**").hasRole("ADMIN");
+
+        http.authorizeRequests()
+                .and()
+                .formLogin().loginPage("/login").loginProcessingUrl("/loginAction").permitAll()
+                .and()
+                .logout().logoutSuccessUrl("/home").permitAll()
+                .and()
+                .csrf().disable();
 //        http
 //                .authorizeRequests()
-//                //.antMatchers("/").permitAll()
+//                .antMatchers("/").permitAll()
 //                .antMatchers("/contactus").permitAll()
 //                .antMatchers("/admin/**").hasRole("ADMIN")
 //                .antMatchers("/subscriber/**").hasRole("USER")
