@@ -19,12 +19,11 @@ public class User {
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @OneToOne
-    @MapsId
+    @OneToOne(mappedBy = "user")
     private Credential credential;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    @Column(name = "parkingid")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "parkingid")
     private Set<Parking> parkings = new HashSet<Parking>();
 
     public int getUserid() {

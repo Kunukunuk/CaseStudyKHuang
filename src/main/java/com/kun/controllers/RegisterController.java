@@ -23,7 +23,7 @@ public class RegisterController {
     public ModelAndView getRegistrationForm(@ModelAttribute("userRegistrationObj") Credential credential, BindingResult br,
                                             @RequestParam("confirmPassword") String confirmPassword) {
         ModelAndView mav = null;
-        Credential newUser = new Credential();
+        Credential newUser = credential;
 
         if (br.hasErrors() || credential == null) {
             mav = new ModelAndView("register");
@@ -34,19 +34,18 @@ public class RegisterController {
                 //set up the user
                 User user = credential.getUser();
                 user.setEmail(credential.getUsername());
-                user.setCredential(newUser);
 
                 //Authority
-
                 Authority authority = new Authority();
                 authority.setAuthority("user");
-                authority.setCredential(newUser);
 
                 //set up credentials
                 newUser.setPassword(credential.getPassword());
                 newUser.setUsername(credential.getUsername());
                 newUser.setUser(user);
                 newUser.getAuthorities().add(authority);
+                user.setCredential(newUser);
+                authority.setCredential(newUser);
 
                 credentialRepository.save(newUser);
                 mav.addObject("message", "Successfully registered account.\nYou can login using the account.");

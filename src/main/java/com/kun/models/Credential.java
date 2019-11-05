@@ -1,6 +1,7 @@
 package com.kun.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -9,6 +10,7 @@ import java.util.Set;
 public class Credential {
 
     @Id
+    @Email
     @Column(name = "username", nullable = false)
     private String username;
 
@@ -19,7 +21,7 @@ public class Credential {
     @Column(name = "authority")
     private Set<Authority> authorities = new HashSet<Authority>();
 
-    @OneToOne(mappedBy = "credential", cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "userid")
     private User user;
 

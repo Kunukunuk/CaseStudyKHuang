@@ -28,6 +28,7 @@ public class Parking {
     private Date endDate;
 
     @ManyToOne
+    @MapsId
     private User user;
 
     @Column(name = "price", nullable = false)
