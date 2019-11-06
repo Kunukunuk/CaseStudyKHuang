@@ -1,7 +1,6 @@
 package com.kun.services;
 
 import com.kun.models.Credential;
-import com.kun.models.User;
 import com.kun.repositories.CredentialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
