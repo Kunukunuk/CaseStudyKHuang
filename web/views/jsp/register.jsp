@@ -25,20 +25,20 @@
                 <h1>Register An Account</h1>
                 ${message}
                 <div class="form-group">
-                    <label path="user.name">Name:</label>
-                    <input type="text" name="user.name" class="form-control" id="user.name">
+                    <label path="user.name">First and Last Name:</label>
+                    <input type="text" name="user.name" class="form-control text-center" id="user.name">
                 </div>
                 <div class="form-group">
-                    <label path="username">Username:</label>
-                    <input type="text" name="username" class="form-control" id="username">
+                    <label path="username">Username(email):</label>
+                    <input type="text" name="username" class="form-control text-center" id="username">
                 </div>
                 <div class="form-group">
                     <label path="password">Password:</label>
-                    <input type="text" name="password" class="form-control" id="password">
+                    <input type="text" name="password" class="form-control text-center" id="password">
                 </div>
                 <div class="form-group">
                     <label>Repeat Password:</label>
-                    <input type="password" name="confirmPassword" class="form-control" id="confirmPassword">
+                    <input type="password" name="confirmPassword" class="form-control text-center" id="confirmPassword">
                 </div>
                 <button name="Login" id="Login">Register</button>
             </form>
