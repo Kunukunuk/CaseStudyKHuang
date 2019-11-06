@@ -1,6 +1,7 @@
 package com.kun.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,9 +14,11 @@ public class User {
     @Column(name = "userid", nullable = false)
     private int userid;
 
+    @NotEmpty(message = "Can not be empty")
     @Column(name = "name", nullable = false)
     private String name;
 
+    @NotEmpty(message = "Can not be empty")
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
