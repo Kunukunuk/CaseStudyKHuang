@@ -18,7 +18,7 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-10 offset-sm-1 text-center">
-            <form:form action="${pageContext.request.contextPath}/loginAction" method="post" class="justify-content-center">
+            <form action='<spring:url value="/loginAction" />' method="post" class="justify-content-center">
                     <h1>Login:</h1>
                 <div class="form-group">
                     ${message}
@@ -30,7 +30,7 @@
                     <input type="password" name="password" class="form-control">
                 </div>
                 <input type="submit" value="submit" name="submit">
-            </form:form>
+            </form>
         </div>
     </div>
 </div>

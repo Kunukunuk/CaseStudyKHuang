@@ -1,9 +1,12 @@
 package com.kun.controllers;
 
 import com.kun.models.Credential;
+import com.kun.models.Parking;
 import com.kun.repositories.CredentialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -41,6 +44,7 @@ public class MenuController {
     @RequestMapping("/addparking")
     public ModelAndView getAddParkingForm() {
         ModelAndView mav = new ModelAndView("addparking");
+        mav.addObject("parkingFormObj", new Parking());
         return mav;
     }
 
@@ -54,6 +58,14 @@ public class MenuController {
     public ModelAndView getRegisterForm() {
         ModelAndView mav = new ModelAndView("register");
         mav.addObject("userRegistrationObj", new Credential());
+        return mav;
+    }
+
+    @RequestMapping(value = "addParkingAction", method = RequestMethod.POST)
+    public ModelAndView doAddParkingForm(@ModelAttribute("parkingFormObj") Parking parking, BindingResult br) {
+
+        ModelAndView mav = null;
+
         return mav;
     }
 
