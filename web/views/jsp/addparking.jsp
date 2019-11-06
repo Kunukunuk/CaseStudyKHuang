@@ -26,35 +26,35 @@
                 ${message}
                 <div class="form-group">
                     <label>Name</label>
-                    <input type="text" name="name" class="form-control">
+                    <input type="text" name="name" class="form-control text-center">
                 </div>
                 <div class="form-group">
                     <label>Street</label>
-                    <input type="text" name="street" class="form-control">
+                    <input type="text" name="street" class="form-control text-center">
                 </div>
                 <div class="form-group">
                     <label>City</label>
-                    <input type="text" name="city" class="form-control">
+                    <input type="text" name="city" class="form-control text-center">
                 </div>
                 <div class="form-group">
                     <label>State</label>
-                    <input type="text" name="state" class="form-control">
+                    <input type="text" name="state" class="form-control text-center">
                 </div>
                 <div class="form-group">
                     <label>Zip Code</label>
-                    <input type="text" name="zipcode" class="form-control">
+                    <input type="text" name="zipcode" class="form-control text-center">
                 </div>
                 <div class="form-group">
                     <label>Time Start</label>
-                    <input type="date" name="timestart" class="form-control">
+                    <input type="date" name="timestart" class="form-control text-center">
                 </div>
                 <div class="form-group">
                     <label>Time End</label>
-                    <input type="date" name="timeend" class="form-control">
+                    <input type="date" name="timeend" class="form-control text-center">
                 </div>
                 <div class="form-group">
                     <label>Price</label>
-                    <input type="number" name="price" class="form-control">
+                    <input type="number" name="price" class="form-control text-center">
                 </div>
                 <input type="submit" value="submit" name="submit">
             </form:form>
