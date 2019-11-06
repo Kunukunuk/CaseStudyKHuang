@@ -26,12 +26,12 @@
                     <h1>Login</h1>
                 <div class="form-group">
                     ${message}
-                    <label>Username:</label>
-                    <input type="text" name="username" class="form-control">
+                    <label>Username(email):</label>
+                    <input type="text" name="username" class="form-control text-center">
                 </div>
                 <div class="form-group">
                     <label>Password:</label>
-                    <input type="password" name="password" class="form-control">
+                    <input type="password" name="password" class="form-control text-center">
                 </div>
                 <input type="submit" value="submit" name="submit">
             </form>
