@@ -30,9 +30,6 @@ public class Payment {
     @Column(name = "paysuccess", nullable = false)
     private boolean success;
 
-    @OneToOne
-    private Reserve reserve;
-
     public int getPayID() {
         return payID;
     }
@@ -89,11 +86,4 @@ public class Payment {
         this.success = success;
     }
 
-    public Reserve getReserve() {
-        return reserve;
-    }
-
-    public void setReserve(Reserve reserve) {
-        this.reserve = reserve;
-    }
 }

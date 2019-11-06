@@ -1,6 +1,8 @@
 package com.kun.models;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "addresses")
@@ -23,9 +25,8 @@ public class Address {
     @Column(name = "state", nullable = false, length = 2)
     private String State;
 
-    @OneToOne(mappedBy = "address", cascade = CascadeType.ALL)
-    @JoinColumn(name = "parkingid", nullable = false)
-    private Parking parking;
+    @OneToMany(mappedBy = "address", cascade = CascadeType.ALL)
+    private Set<Parking> parking = new HashSet<Parking>();
 
     public int getAID() {
         return AID;
@@ -67,11 +68,11 @@ public class Address {
         State = state;
     }
 
-    public Parking getParking() {
+    public Set<Parking> getParking() {
         return parking;
     }
 
-    public void setParking(Parking parking) {
+    public void setParking(Set<Parking> parking) {
         this.parking = parking;
     }
 }

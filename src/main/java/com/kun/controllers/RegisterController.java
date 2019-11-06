@@ -24,7 +24,7 @@ public class RegisterController {
     public ModelAndView getRegistrationForm(@ModelAttribute("userRegistrationObj") Credential credential, BindingResult br,
                                             @RequestParam("confirmPassword") String confirmPassword) {
         ModelAndView mav = null;
-        Credential newUser = credential;
+        Credential newCredential = credential;
 
         if (br.hasErrors() || credential == null) {
             mav = new ModelAndView("register");
@@ -40,17 +40,16 @@ public class RegisterController {
                 authority.setAuthority("user");
 
                 //set up credentials
-//                newUser.setPassword(credential.getPassword());
+//                newCredential.setPassword(credential.getPassword());
                 String encodedPass = new BCryptPasswordEncoder().encode(credential.getPassword());
-                newUser.setUsername(credential.getUsername());
-                newUser.setPassword(encodedPass);
-                newUser.setUser(user);
-                newUser.getAuthorities().add(authority);
-                user.setCredential(newUser);
-                authority.setCredential(newUser);
+                newCredential.setUsername(credential.getUsername());
+                newCredential.setPassword(encodedPass);
+                newCredential.setUser(user);
+                newCredential.getAuthorities().add(authority);
+                authority.setCredential(newCredential);
 
                 System.out.println("*** register success");
-                credentialRepository.save(newUser);
+                credentialRepository.save(newCredential);
                 mav = new ModelAndView("login");
                 mav.addObject("message", "Successfully registered account.\nYou can login using the account.");
 

@@ -17,16 +17,11 @@ public class Reserve {
     @Column(name = "reserveDate", nullable = false)
     private Date creationDate;
 
-    @OneToMany
-    @JoinColumn(name = "parkingid", nullable = false)
+    @OneToMany(mappedBy = "reserve", cascade = CascadeType.ALL)
     private Set<Parking> parking = new HashSet<Parking>();
 
     @Column(name = "price", nullable = false)
     private int price;
-
-    @OneToOne
-    @JoinColumn(name = "username", nullable = false)
-    private User user;
 
     @OneToOne
     @JoinColumn(name = "payid", nullable = false)
@@ -54,14 +49,6 @@ public class Reserve {
 
     public void setPrice(int price) {
         this.price = price;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public Payment getPayment() {

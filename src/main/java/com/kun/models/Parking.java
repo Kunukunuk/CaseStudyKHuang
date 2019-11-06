@@ -9,7 +9,7 @@ public class Parking {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "parkingid", nullable = false)
+    @Column(name = "parkingid")
     private int PID;
 
     @Column(name = "length", nullable = false)
@@ -27,16 +27,14 @@ public class Parking {
     @Column(name = "availableEnd", nullable = false)
     private Date endDate;
 
-    @ManyToOne
-    @MapsId
-    private User user;
-
     @Column(name = "price", nullable = false)
     private int price;
 
-    @OneToOne
-    @MapsId
+    @ManyToOne
     private Address address;
+
+    @ManyToOne
+    private Reserve reserve;
 
     public int getPID() {
         return PID;
@@ -86,14 +84,6 @@ public class Parking {
         this.endDate = endDate;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     public int getPrice() {
         return price;
     }
@@ -102,11 +92,4 @@ public class Parking {
         this.price = price;
     }
 
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
 }

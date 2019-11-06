@@ -19,12 +19,13 @@ public class User {
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @OneToOne(mappedBy = "user")
-    private Credential credential;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "addressid")
+    private Set<Address> addresses = new HashSet<Address>();
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "parkingid")
-    private Set<Parking> parkings = new HashSet<Parking>();
+    @JoinColumn(name = "reserveid")
+    private Set<Reserve> reserves = new HashSet<Reserve>();
 
     public int getUserid() {
         return userid;
@@ -50,12 +51,12 @@ public class User {
         this.email = email;
     }
 
-    public Credential getCredential() {
-        return credential;
+    public Set<Address> getAddresses() {
+        return addresses;
     }
 
-    public void setCredential(Credential credential) {
-        this.credential = credential;
+    public void setAddresses(Set<Address> addresses) {
+        this.addresses = addresses;
     }
 
     //    @Override
