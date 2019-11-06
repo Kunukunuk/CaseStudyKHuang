@@ -20,8 +20,8 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-10 offset-sm-1 text-center">
-            <form:form id="parkingForm" action="addParkingAction" modelAttribute="parkingFormObj"
-                       method="post" class="justify-content-center">
+            <form:form id="parkingForm" action="addParkingAction"
+                       modelAttribute="parkingFormObj" method="post">
                 <h1>Add Parking:</h1>
                 ${message}
                 <div class="form-group">
