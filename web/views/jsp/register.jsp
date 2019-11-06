@@ -12,38 +12,38 @@
 <head>
     <title>Register</title>
 </head>
-<body>
-    <div>
-        <form:form id="userRegistrationForm" modelAttribute="userRegistrationObj"
-                   action="processCredentials" method="post">
-            <p> ${message} </p>
-            <table>
-                <tr>
-                    <td><form:label path="user.name" />Name: </td>
-                    <td><form:input path="user.name" name= "user.name" id="user.name"/></td>
-                    <td><form:errors path="user.name" cssClass="error"/></td>
+<body class="bg-dark text-white">
+<div id="header">
+    <jsp:include page="menu.jsp"></jsp:include>
+</div>
 
-                </tr>
-                <tr>
-                    <td><form:label path="username" />Email: </td>
-                    <td><form:input path="username" name= "username" id="username"/></td>
-                    <td><form:errors path="username" cssClass="error"/></td>
-
-                </tr>
-                <tr>
-                    <td><form:label path="password" />Password: </td>
-                    <td><form:password path="password" name= "password" id="password" placeholder="You Password"/></td>
-                    <td><form:errors path="password" cssClass="error"/></td>
-                </tr>
-                <tr>
-                    <td><label>Repeat Password: </label></td>
-                    <td><input type="password" name= "confirmPassword" id="password" placeholder="Confirm Password"/></td>
-                </tr>
-                <tr>
-                    <td><form:button name="Login" id="Login">Register</form:button></td>
-                </tr>
-            </table>
-        </form:form>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-10 offset-sm-1 text-center">
+            <form id="userRegistrationForm" action="processCredentials"
+                  modelAttribute="userRegistrationObj" method="post" class="justify-content-center">
+                <h1>Register An Account</h1>
+                ${message}
+                <div class="form-group">
+                    <label path="user.name">Name:</label>
+                    <input type="text" name="user.name" class="form-control" id="user.name">
+                </div>
+                <div class="form-group">
+                    <label path="username">Username:</label>
+                    <input type="text" name="username" class="form-control" id="username">
+                </div>
+                <div class="form-group">
+                    <label path="password">Password:</label>
+                    <input type="text" name="password" class="form-control" id="password">
+                </div>
+                <div class="form-group">
+                    <label>Repeat Password:</label>
+                    <input type="password" name="confirmPassword" class="form-control" id="confirmPassword">
+                </div>
+                <button name="Login" id="Login">Register</button>
+            </form>
+        </div>
     </div>
+</div>
 </body>
 </html>

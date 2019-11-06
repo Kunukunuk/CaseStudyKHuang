@@ -15,11 +15,15 @@
 </head>
 <body class="bg-dark text-white">
 
+<div id="header">
+    <jsp:include page="menu.jsp"></jsp:include>
+</div>
+
 <div class="container">
     <div class="row">
         <div class="col-sm-10 offset-sm-1 text-center">
             <form action='<spring:url value="/loginAction" />' method="post" class="justify-content-center">
-                    <h1>Login:</h1>
+                    <h1>Login</h1>
                 <div class="form-group">
                     ${message}
                     <label>Username:</label>

@@ -46,11 +46,15 @@
                 </div>
                 <div class="form-group">
                     <label>Time Start</label>
-                    <input type="text" name="timestart" class="form-control">
+                    <input type="date" name="timestart" class="form-control">
                 </div>
                 <div class="form-group">
                     <label>Time End</label>
-                    <input type="text" name="timeend" class="form-control">
+                    <input type="date" name="timeend" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Price</label>
+                    <input type="number" name="price" class="form-control">
                 </div>
                 <input type="submit" value="submit" name="submit">
             </form:form>
