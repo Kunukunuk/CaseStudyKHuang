@@ -3,6 +3,7 @@ package com.kun.models;
 import javax.persistence.*;
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
 @Entity
@@ -14,20 +15,25 @@ public class Parking {
     @Column(name = "parkingid")
     private int PID;
 
+    @Min(value = 0, message = "Must be a positive number")
     @Column(name = "length", nullable = false)
     private int length;
 
+    @Min(value = 0, message = "Must be a positive number")
     @Column(name = "width", nullable = false)
     private int width;
-    
+
+    @NotEmpty(message = "Can not be empty")
     @Column(name = "creationDate", nullable = false)
     private Date creationDate;
 
     @FutureOrPresent
+    @NotEmpty(message = "Can not be empty")
     @Column(name = "availableFrom", nullable = false)
     private Date availableDate;
 
     @FutureOrPresent
+    @NotEmpty(message = "Can not be empty")
     @Column(name = "availableEnd", nullable = false)
     private Date endDate;
 
@@ -97,4 +103,19 @@ public class Parking {
         this.price = price;
     }
 
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public Reserve getReserve() {
+        return reserve;
+    }
+
+    public void setReserve(Reserve reserve) {
+        this.reserve = reserve;
+    }
 }
