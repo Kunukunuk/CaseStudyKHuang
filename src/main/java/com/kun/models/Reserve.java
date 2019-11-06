@@ -1,6 +1,9 @@
 package com.kun.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,12 +17,15 @@ public class Reserve {
     @Column(name = "rid", nullable = false)
     private int RID;
 
+    @FutureOrPresent
     @Column(name = "reserveDate", nullable = false)
     private Date creationDate;
 
     @OneToMany(mappedBy = "reserve", cascade = CascadeType.ALL)
     private Set<Parking> parking = new HashSet<Parking>();
 
+    @NotEmpty(message = "Can not be empty")
+    @Min(value = 0, message = "Must be positive")
     @Column(name = "price", nullable = false)
     private int price;
 

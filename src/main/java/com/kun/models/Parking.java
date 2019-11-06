@@ -23,6 +23,7 @@ public class Parking {
     @Column(name = "width", nullable = false)
     private int width;
 
+    @FutureOrPresent
     @NotEmpty(message = "Can not be empty")
     @Column(name = "creationDate", nullable = false)
     private Date creationDate;

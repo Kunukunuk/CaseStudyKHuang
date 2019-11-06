@@ -1,6 +1,11 @@
 package com.kun.models;
 
+import org.hibernate.validator.constraints.CreditCardNumber;
+
 import javax.persistence.*;
+import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
 @Entity
@@ -12,18 +17,24 @@ public class Payment {
     @Column(name = "payid", nullable = false)
     private int payID;
 
+    @FutureOrPresent
     @Column(name = "dateofpayment", nullable = false)
     private Date dateOfPayment;
 
+    @NotEmpty(message = "Can not be empty")
     @Column(name = "cardtype", nullable = false)
     private String cardType;
 
+    @CreditCardNumber
+    @NotEmpty(message = "Can not be empty")
     @Column(name = "cardnumber", nullable = false)
     private String cardNumber;
 
+    @NotEmpty(message = "Can not be empty")
     @Column(name = "nameoncard", nullable = false)
     private String nameOnCard;
 
+    @Min(value = 0, message = "Must be positive")
     @Column(name = "price", nullable = false)
     private int price;
 
@@ -85,5 +96,6 @@ public class Payment {
     public void setSuccess(boolean success) {
         this.success = success;
     }
+
 
 }
