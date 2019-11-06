@@ -1,6 +1,8 @@
 package com.kun.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.Min;
 import java.util.Date;
 
 @Entity
@@ -17,16 +19,19 @@ public class Parking {
 
     @Column(name = "width", nullable = false)
     private int width;
-
+    
     @Column(name = "creationDate", nullable = false)
     private Date creationDate;
 
+    @FutureOrPresent
     @Column(name = "availableFrom", nullable = false)
     private Date availableDate;
 
+    @FutureOrPresent
     @Column(name = "availableEnd", nullable = false)
     private Date endDate;
 
+    @Min(value = 0, message = "Must be a positive number")
     @Column(name = "price", nullable = false)
     private int price;
 
