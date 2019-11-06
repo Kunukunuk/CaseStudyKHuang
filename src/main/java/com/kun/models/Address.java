@@ -1,6 +1,7 @@
 package com.kun.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,15 +14,19 @@ public class Address {
     @Column(name = "aid", nullable = false)
     private int AID;
 
+    @NotEmpty(message = "Can not be empty")
     @Column(name = "street", nullable = false)
     private String street;
 
+    @NotEmpty(message = "Can not be empty")
     @Column(name = "zip", nullable = false, length = 5)
     private String zip;
 
+    @NotEmpty(message = "Can not be empty")
     @Column(name = "city", nullable = false)
     private String city;
 
+    @NotEmpty(message = "Can not be empty")
     @Column(name = "state", nullable = false, length = 2)
     private String State;
 
@@ -75,4 +80,5 @@ public class Address {
     public void setParking(Set<Parking> parking) {
         this.parking = parking;
     }
+
 }
