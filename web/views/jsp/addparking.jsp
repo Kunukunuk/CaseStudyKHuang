@@ -10,7 +10,10 @@
 <head>
     <title>Add Parking</title>
 </head>
-<body>
+<body class="bg-dark text-white">
+<div id="header">
+    <jsp:include page="menu.jsp"></jsp:include>
+</div>
 
 </body>
 </html>

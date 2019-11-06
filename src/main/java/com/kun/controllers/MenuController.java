@@ -1,13 +1,20 @@
 package com.kun.controllers;
 
 import com.kun.models.Credential;
+import com.kun.repositories.CredentialRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.security.Principal;
+
 @Controller
 public class MenuController {
+
+    @Autowired
+    CredentialRepository credentialRepository;
 
     @RequestMapping("/home")
     public ModelAndView getHome() {
@@ -22,8 +29,12 @@ public class MenuController {
     }
 
     @RequestMapping("/profile")
-    public ModelAndView getProfile() {
+    public ModelAndView getProfile(Principal principal) {
         ModelAndView mav = new ModelAndView("profile");
+        Credential user = credentialRepository.findByUsername(principal.getName());
+        if (user != null) {
+            mav.addObject("user", user);
+        }
         return mav;
     }
 
