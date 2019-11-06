@@ -10,12 +10,12 @@
 <head>
     <title>Welcome Screen</title>
 </head>
-<body>
+<body class="bg-dark text-white">
 <div id="header">
     <jsp:include page="menu.jsp"></jsp:include>
 </div>
-This is the welcome screen
-${user.username}
+This is the welcome screen ${user.username}
+
 
 </body>
 </html>

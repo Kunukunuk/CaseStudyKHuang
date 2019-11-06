@@ -1,9 +1,8 @@
 package com.kun.models;
 
-import com.sun.istack.NotNull;
-
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,11 +12,11 @@ public class Credential {
 
     @Id
     @Email
-    @NotNull
+    @NotEmpty(message = "empty username")
     @Column(name = "username", nullable = false)
     private String username;
 
-    @NotNull
+    @NotEmpty(message = "empty password")
     @Column(name = "password", nullable = false)
     private String password;
 

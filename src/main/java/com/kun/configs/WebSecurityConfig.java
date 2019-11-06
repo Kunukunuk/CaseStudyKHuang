@@ -42,7 +42,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/","/home/**","/profile/**","/about/**","/contact/**","/register","/login","/logout").permitAll()
                 .antMatchers("/admin/**").hasRole("ADMIN")
-//                .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login")
                 .loginProcessingUrl("/loginAction")
