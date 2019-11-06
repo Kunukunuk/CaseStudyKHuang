@@ -25,9 +25,7 @@
             Email: ${user.username}
             <br>
         </div>
-
     </div>
-
 </div>
 
 </body>
