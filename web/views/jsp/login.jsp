@@ -5,7 +5,8 @@
   Time: 9:51 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -13,7 +14,7 @@
 </head>
 <body>
 ${message}
-<form action='<spring:url value="/loginAction"/>' method="post">
+<form:form action="${pageContext.request.contextPath}/loginAction" method="post">
 
     <table>
         <tr>
@@ -28,6 +29,6 @@ ${message}
             <td><input type="submit" value="submit" name="submit"></td>
         </tr>
     </table>
-</form>
+</form:form>
 </body>
 </html>

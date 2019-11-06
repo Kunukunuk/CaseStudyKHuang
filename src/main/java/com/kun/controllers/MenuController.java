@@ -33,7 +33,7 @@ public class MenuController {
         return mav;
     }
 
-    @RequestMapping("/login")
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView getLoginForm() {
         ModelAndView mav = new ModelAndView("login");
         return mav;

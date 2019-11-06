@@ -5,6 +5,7 @@ import com.kun.models.Credential;
 import com.kun.models.User;
 import com.kun.repositories.CredentialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -30,7 +31,6 @@ public class RegisterController {
             mav.addObject("message", "There was an error registering your account");
         } else {
             if (credential.getPassword().equals(confirmPassword)) {
-                mav = new ModelAndView("login");
                 //set up the user
                 User user = credential.getUser();
                 user.setEmail(credential.getUsername());
@@ -40,14 +40,18 @@ public class RegisterController {
                 authority.setAuthority("user");
 
                 //set up credentials
-                newUser.setPassword(credential.getPassword());
+//                newUser.setPassword(credential.getPassword());
+                String encodedPass = new BCryptPasswordEncoder().encode(credential.getPassword());
                 newUser.setUsername(credential.getUsername());
+                newUser.setPassword(encodedPass);
                 newUser.setUser(user);
                 newUser.getAuthorities().add(authority);
                 user.setCredential(newUser);
                 authority.setCredential(newUser);
 
+                System.out.println("*** register success");
                 credentialRepository.save(newUser);
+                mav = new ModelAndView("login");
                 mav.addObject("message", "Successfully registered account.\nYou can login using the account.");
 
             } else {

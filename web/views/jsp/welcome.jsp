@@ -15,6 +15,7 @@
     <jsp:include page="menu.jsp"></jsp:include>
 </div>
 This is the welcome screen
+${user.username}
 
 </body>
 </html>

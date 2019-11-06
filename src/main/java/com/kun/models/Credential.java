@@ -1,5 +1,7 @@
 package com.kun.models;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import java.util.HashSet;
@@ -11,9 +13,11 @@ public class Credential {
 
     @Id
     @Email
+    @NotNull
     @Column(name = "username", nullable = false)
     private String username;
 
+    @NotNull
     @Column(name = "password", nullable = false)
     private String password;
 

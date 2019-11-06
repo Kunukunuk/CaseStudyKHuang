@@ -26,12 +26,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
+
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-//
-//		auth.inMemoryAuthentication()
-//		.withUser("kun").password("kunkun").roles("ADMIN")
-//		.and()
-//		.withUser("notKun").password("notKunkun").roles("USER");
 
     }
 
@@ -42,31 +38,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     protected void configure(HttpSecurity http) throws Exception{
-        http.authorizeRequests().antMatchers("/","/home/**","/product/**","/about/**","/contact/**","/login","/logout").permitAll();
-        http.authorizeRequests().antMatchers("/admin/**").hasRole("ADMIN");
 
         http.authorizeRequests()
+                .antMatchers("/","/home/**","/profile/**","/about/**","/contact/**","/register","/login","/logout").permitAll()
+                .antMatchers("/admin/**").hasRole("ADMIN")
+//                .anyRequest().authenticated()
                 .and()
-                .formLogin().loginPage("/login").loginProcessingUrl("/loginAction").permitAll()
+                .formLogin().loginPage("/login")
+                .loginProcessingUrl("/loginAction")
+                .defaultSuccessUrl("/welcome", true)
+                .failureUrl("/login?error=true")
+                .permitAll()
                 .and()
                 .logout().logoutSuccessUrl("/home").permitAll()
                 .and()
                 .csrf().disable();
-//        http
-//                .authorizeRequests()
-//                .antMatchers("/").permitAll()
-//                .antMatchers("/contactus").permitAll()
-//                .antMatchers("/admin/**").hasRole("ADMIN")
-//                .antMatchers("/subscriber/**").hasRole("USER")
-//                .antMatchers("/all/**").hasAnyRole("ADMIN", "USER")
-//                .anyRequest().authenticated()
-//                .and()
-//                .formLogin().loginPage("/login").loginProcessingUrl("/loginAction").defaultSuccessUrl("/", true).permitAll()
-//                .and()
-//                .logout().logoutSuccessUrl("/login").permitAll()
-//                .and()
-//                .exceptionHandling().accessDeniedPage("/403")
-//                .and()
-//                .csrf().disable();
     }
 }
