@@ -3,6 +3,7 @@ package com.kun.controllers;
 import com.kun.models.Credential;
 import com.kun.models.Parking;
 import com.kun.repositories.CredentialRepository;
+import com.kun.repositories.ParkingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -19,9 +20,13 @@ public class MenuController {
     @Autowired
     CredentialRepository credentialRepository;
 
-    @RequestMapping("/home")
+    @Autowired
+    ParkingRepository parkingRepository;
+
+    @RequestMapping(value = {"/","/home"}, method = RequestMethod.GET)
     public ModelAndView getHome() {
         ModelAndView mav = new ModelAndView("home");
+
         return mav;
     }
 
