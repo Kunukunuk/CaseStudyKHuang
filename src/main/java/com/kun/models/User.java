@@ -23,11 +23,11 @@ public class User {
     private String email;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "addressid")
+    @JoinColumn(name = "user_id")
     private Set<Address> addresses = new HashSet<Address>();
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "reserveid")
+    @JoinColumn(name = "reserve_id")
     private Set<Reserve> reserves = new HashSet<Reserve>();
 
     public int getUserid() {

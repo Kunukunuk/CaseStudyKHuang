@@ -21,7 +21,7 @@
     <div class="row">
         <div class="col-sm-10 offset-sm-1 text-center">
             <h1>Welcome to the app</h1>
-
+            ${message}
             <h3>List of parking available:</h3>
             <c:if test="${parkings} == null">
                 <label>No parking available</label>

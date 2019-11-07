@@ -48,7 +48,6 @@ public class RegisterController {
                 newCredential.getAuthorities().add(authority);
                 authority.setCredential(newCredential);
 
-                System.out.println("*** register success");
                 credentialRepository.save(newCredential);
                 mav = new ModelAndView("login");
                 mav.addObject("message", "Successfully registered account.\nYou can login using the account.");

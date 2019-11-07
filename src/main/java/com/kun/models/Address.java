@@ -1,6 +1,7 @@
 package com.kun.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,21 +15,21 @@ public class Address {
     @Column(name = "aid", nullable = false)
     private int AID;
 
-    @NotEmpty(message = "Can not be empty")
+    @NotBlank(message = "Can not be empty")
     @Column(name = "street", nullable = false)
     private String street;
 
-    @NotEmpty(message = "Can not be empty")
+    @NotBlank(message = "Can not be empty")
     @Column(name = "zip", nullable = false, length = 5)
     private String zip;
 
-    @NotEmpty(message = "Can not be empty")
+    @NotBlank(message = "Can not be empty")
     @Column(name = "city", nullable = false)
     private String city;
 
-    @NotEmpty(message = "Can not be empty")
+    @NotBlank(message = "Can not be empty")
     @Column(name = "state", nullable = false, length = 2)
-    private String State;
+    private String state;
 
     @OneToMany(mappedBy = "address", cascade = CascadeType.ALL)
     private Set<Parking> parking = new HashSet<Parking>();
@@ -66,11 +67,11 @@ public class Address {
     }
 
     public String getState() {
-        return State;
+        return state;
     }
 
     public void setState(String state) {
-        State = state;
+        this.state = state;
     }
 
     public Set<Parking> getParking() {
@@ -81,4 +82,15 @@ public class Address {
         this.parking = parking;
     }
 
+    @Override
+    public String toString() {
+        return "Address{" +
+                "AID=" + AID +
+                ", street='" + street + '\'' +
+                ", zip='" + zip + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", parking=" + parking +
+                '}';
+    }
 }

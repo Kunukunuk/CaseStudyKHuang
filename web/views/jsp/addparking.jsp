@@ -20,43 +20,48 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-10 offset-sm-1 text-center">
-            <form:form id="parkingForm" action="addParkingAction"
+            <form:form id="parkingFormObj" action="${pageContext.request.contextPath}/addressParkingAction"
                        modelAttribute="parkingFormObj" method="post">
                 <h1>Add Parking:</h1>
                 ${message}
                 <div class="form-group">
-                    <label>Name</label>
-                    <input type="text" name="name" class="form-control text-center">
-                </div>
-                <div class="form-group">
                     <label>Street</label>
-                    <input type="text" name="street" class="form-control text-center">
+                    <form:input type="text" name="street" path="address.street" class="form-control text-center" value="street" />
                 </div>
                 <div class="form-group">
                     <label>City</label>
-                    <input type="text" name="city" class="form-control text-center">
+                    <form:input type="text" name="city" path="address.city" class="form-control text-center" value="city" />
                 </div>
                 <div class="form-group">
                     <label>State</label>
-                    <input type="text" name="state" class="form-control text-center">
+                    <form:input type="text" name="state" path="address.state" class="form-control text-center" value="ny" />
                 </div>
                 <div class="form-group">
                     <label>Zip Code</label>
-                    <input type="text" name="zipcode" class="form-control text-center">
+                    <form:input type="text" name="zip" path="address.zip" class="form-control text-center" value="10000" />
                 </div>
                 <div class="form-group">
                     <label>Time Start</label>
-                    <input type="date" name="timestart" class="form-control text-center">
+                    <form:input type="date" name="availableDate" path="availableDate" class="form-control text-center" value="2019-11-07" />
                 </div>
                 <div class="form-group">
                     <label>Time End</label>
-                    <input type="date" name="timeend" class="form-control text-center">
+                    <form:input type="date" name="endDate" path="endDate" class="form-control text-center" value="2019-11-08" />
+                </div>
+                <div class="form-group">
+                    <label>Length of space</label>
+                    <form:input type="number" name="length" path="length" class="form-control text-center" value="12"/>
+                </div>
+                <div class="form-group">
+                    <label>Width of space</label>
+                    <form:input type="number" name="width" path="width" class="form-control text-center" value="12" />
                 </div>
                 <div class="form-group">
                     <label>Price</label>
-                    <input type="number" name="price" class="form-control text-center">
+                    <form:input type="number" name="price" path="price" class="form-control text-center" value="12" />
                 </div>
-                <input type="submit" value="submit" name="submit">
+
+                <button name="addParking" id="addParking">Add</button>
             </form:form>
         </div>
     </div>

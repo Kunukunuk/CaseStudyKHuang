@@ -1,5 +1,7 @@
 package com.kun.models;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import javax.persistence.*;
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.Min;
@@ -17,12 +19,10 @@ public class Reserve {
     @Column(name = "rid", nullable = false)
     private int RID;
 
-    @FutureOrPresent
-    @Column(name = "reserveDate", nullable = false)
+    @CreationTimestamp
+    @Temporal(TemporalType.DATE)
+    @Column(name = "reserveDate")
     private Date creationDate;
-
-    @OneToMany(mappedBy = "reserve", cascade = CascadeType.ALL)
-    private Set<Parking> parking = new HashSet<Parking>();
 
     @NotEmpty(message = "Can not be empty")
     @Min(value = 0, message = "Must be positive")
@@ -65,11 +65,4 @@ public class Reserve {
         this.payment = payment;
     }
 
-    public Set<Parking> getParking() {
-        return parking;
-    }
-
-    public void setParking(Set<Parking> parking) {
-        this.parking = parking;
-    }
 }

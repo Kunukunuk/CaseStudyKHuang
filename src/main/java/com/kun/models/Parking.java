@@ -1,9 +1,14 @@
 package com.kun.models;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -23,18 +28,22 @@ public class Parking {
     @Column(name = "width", nullable = false)
     private int width;
 
-    @FutureOrPresent
-    @NotEmpty(message = "Can not be empty")
-    @Column(name = "creationDate", nullable = false)
+    @CreationTimestamp
+    @Temporal(TemporalType.DATE)
+    @Column(name = "creationDate")
     private Date creationDate;
 
+    @NotNull
     @FutureOrPresent
-    @NotEmpty(message = "Can not be empty")
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @Temporal(TemporalType.DATE)
     @Column(name = "availableFrom", nullable = false)
     private Date availableDate;
 
+    @NotNull
     @FutureOrPresent
-    @NotEmpty(message = "Can not be empty")
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @Temporal(TemporalType.DATE)
     @Column(name = "availableEnd", nullable = false)
     private Date endDate;
 
@@ -42,11 +51,11 @@ public class Parking {
     @Column(name = "price", nullable = false)
     private int price;
 
-    @ManyToOne
+    @Valid
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "addressid", nullable = false)
     private Address address;
-
-    @ManyToOne
-    private Reserve reserve;
 
     public int getPID() {
         return PID;
@@ -112,11 +121,17 @@ public class Parking {
         this.address = address;
     }
 
-    public Reserve getReserve() {
-        return reserve;
-    }
-
-    public void setReserve(Reserve reserve) {
-        this.reserve = reserve;
+    @Override
+    public String toString() {
+        return "Parking{" +
+                "PID=" + PID +
+                ", length=" + length +
+                ", width=" + width +
+                ", creationDate=" + creationDate +
+                ", availableDate=" + availableDate +
+                ", endDate=" + endDate +
+                ", price=" + price +
+                ", address=" + address +
+                '}';
     }
 }
