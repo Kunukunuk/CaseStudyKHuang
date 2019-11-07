@@ -26,7 +26,8 @@ public class MenuController {
     @RequestMapping(value = {"/","/home"}, method = RequestMethod.GET)
     public ModelAndView getHome() {
         ModelAndView mav = new ModelAndView("home");
-
+        Iterable<Parking> parkings = parkingRepository.findAll();
+        mav.addObject("parkings", parkings);
         return mav;
     }
 
