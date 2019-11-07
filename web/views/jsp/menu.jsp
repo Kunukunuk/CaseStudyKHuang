@@ -22,16 +22,25 @@
         <li class="nav-item">
             <a class="nav-link" href="${pageContext.request.contextPath}/about">About</a>
         </li>
+        <c:if test="${pageContext.request.userPrincipal != null}">
         <li class="nav-item">
             <a class="nav-link" href="${pageContext.request.contextPath}/profile">Profile</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="${pageContext.request.contextPath}/addparking">Add Parking</a>
         </li>
+        </c:if>
     </ul>
+    <c:if test="${pageContext.request.userPrincipal == null}">
     <a href="${pageContext.request.contextPath}/login">Login</a>
     &nbsp&nbsp
     <a href="${pageContext.request.contextPath}/register">Register</a>
+    </c:if>
+
+    <c:if test="${pageContext.request.userPrincipal != null}">
+        <a href="${pageContext.request.contextPath}/logout">Logout</a>
+    </c:if>
+
 </nav>
 
 </body>
