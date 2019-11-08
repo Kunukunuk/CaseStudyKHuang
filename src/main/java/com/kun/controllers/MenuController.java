@@ -23,8 +23,13 @@ public class MenuController {
     ParkingRepository parkingRepository;
 
     @RequestMapping(value = {"/","/home"}, method = RequestMethod.GET)
-    public ModelAndView getHome() {
+    public ModelAndView getHome(Principal principal) {
         ModelAndView mav = new ModelAndView("home");
+        if (principal != null) {
+            Credential currentCredential = credentialRepository.findByUsername(principal.getName());
+            mav.addObject("message", "hi " + currentCredential.getUser().getName());
+            mav.addObject("user", currentCredential.getUser());
+        }
         Set<Parking> parkings = parkingRepository.findAll();
         mav.addObject("parkings", parkings);
         return mav;

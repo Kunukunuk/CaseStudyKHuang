@@ -40,7 +40,7 @@ public class RegisterController {
                 authority.setAuthority("user");
 
                 //set up credentials
-//                newCredential.setPassword(credential.getPassword());
+
                 String encodedPass = new BCryptPasswordEncoder().encode(credential.getPassword());
                 newCredential.setUsername(credential.getUsername());
                 newCredential.setPassword(encodedPass);

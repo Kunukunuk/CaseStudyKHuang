@@ -3,7 +3,6 @@ package com.kun.controllers;
 import com.kun.models.Address;
 import com.kun.models.Credential;
 import com.kun.models.Parking;
-import com.kun.models.User;
 import com.kun.repositories.CredentialRepository;
 import com.kun.repositories.ParkingRepository;
 import org.springframework.beans.factory.annotation.Autowired;

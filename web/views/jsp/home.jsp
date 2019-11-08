@@ -14,7 +14,9 @@
 <%--p-3 mb-2--%>
 <body class="bg-dark text-white">
 <div id="header">
-    <jsp:include page="menu.jsp"></jsp:include>
+    <jsp:include page="menu.jsp">
+        <jsp:param name="name" value="${user.name}"/>
+    </jsp:include>
 </div>
 
 <div class="container h-100">

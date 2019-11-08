@@ -39,6 +39,8 @@
 
     <c:if test="${pageContext.request.userPrincipal != null}">
         <a href="${pageContext.request.contextPath}/logout">Logout</a>
+        &nbsp&nbsp
+        <label>${param.name}</label>
     </c:if>
 
 </nav>
