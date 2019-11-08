@@ -29,7 +29,7 @@ public class Reserve {
     @Column(name = "price", nullable = false)
     private int price;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "payid", nullable = false)
     private Payment payment;
 

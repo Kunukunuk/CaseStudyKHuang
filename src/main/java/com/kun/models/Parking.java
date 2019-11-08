@@ -1,5 +1,7 @@
 package com.kun.models;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -53,7 +55,7 @@ public class Parking {
 
     @Valid
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "addressid", nullable = false)
     private Address address;
 
@@ -121,17 +123,7 @@ public class Parking {
         this.address = address;
     }
 
-    @Override
     public String toString() {
-        return "Parking{" +
-                "PID=" + PID +
-                ", length=" + length +
-                ", width=" + width +
-                ", creationDate=" + creationDate +
-                ", availableDate=" + availableDate +
-                ", endDate=" + endDate +
-                ", price=" + price +
-                ", address=" + address +
-                '}';
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
     }
 }

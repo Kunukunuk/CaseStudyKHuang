@@ -25,11 +25,15 @@
             <h1>Welcome to the app</h1>
             ${message}
             <h3>List of parking available:</h3>
+            ${noparking}
             <c:if test="${parkings} == null">
                 <label>No parking available</label>
             </c:if>
+            <c:forEach var="address" items="${addresses}">
+                <label>${address.street} ${address.city} ${address.state} ${address.zip}</label>
+            </c:forEach>
             <c:forEach var="parking" items="${parkings}">
-                <label>${parking}</label>
+                <label>${parking.price} ${parking.length} ${parking.width} ${parking.availableDate} ${parking.endDate} ${parking.creationDate}</label>
             </c:forEach>
             <div class="border border-danger">
                 mapppp

@@ -11,6 +11,4 @@ public interface ParkingRepository extends CrudRepository<Parking, Integer> {
 
     Parking save(Parking parking);
 
-    Set<Parking> findAll();
-
 }

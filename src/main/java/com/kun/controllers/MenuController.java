@@ -1,9 +1,10 @@
 package com.kun.controllers;
 
+import com.kun.models.Address;
 import com.kun.models.Credential;
 import com.kun.models.Parking;
 import com.kun.repositories.CredentialRepository;
-import com.kun.repositories.ParkingRepository;
+import com.kun.services.ParkingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
+import java.util.HashSet;
 import java.util.Set;
 
 @Controller
@@ -20,18 +22,30 @@ public class MenuController {
     CredentialRepository credentialRepository;
 
     @Autowired
-    ParkingRepository parkingRepository;
+    ParkingService parkingService;
 
     @RequestMapping(value = {"/","/home"}, method = RequestMethod.GET)
     public ModelAndView getHome(Principal principal) {
         ModelAndView mav = new ModelAndView("home");
+
         if (principal != null) {
             Credential currentCredential = credentialRepository.findByUsername(principal.getName());
             mav.addObject("message", "hi " + currentCredential.getUser().getName());
             mav.addObject("user", currentCredential.getUser());
+
         }
-        Set<Parking> parkings = parkingRepository.findAll();
-        mav.addObject("parkings", parkings);
+        Set<Parking> parkings = parkingService.getAllParkings();
+
+        if (parkings.size() > 0) {
+            Set<Address> addresses = new HashSet<Address>();
+            parkings.forEach(p -> addresses.add(p.getAddress()));
+
+            mav.addObject("parkings", parkings);
+            mav.addObject("addresses", addresses);
+        } else {
+
+            mav.addObject("noparking", "No parking available");
+        }
         return mav;
     }
 

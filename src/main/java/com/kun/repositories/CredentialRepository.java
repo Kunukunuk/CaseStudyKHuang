@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface CredentialRepository extends CrudRepository<Credential, String> {
 
     Credential findByUsername(String username);
+
 }

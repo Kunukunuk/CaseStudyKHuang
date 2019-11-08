@@ -31,8 +31,11 @@ public class Address {
     @Column(name = "state", nullable = false, length = 2)
     private String state;
 
-    @OneToMany(mappedBy = "address", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = Parking.class)
     private Set<Parking> parking = new HashSet<Parking>();
+
+//    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+//    private User user;
 
     public int getAID() {
         return AID;
@@ -82,15 +85,11 @@ public class Address {
         this.parking = parking;
     }
 
-    @Override
-    public String toString() {
-        return "Address{" +
-                "AID=" + AID +
-                ", street='" + street + '\'' +
-                ", zip='" + zip + '\'' +
-                ", city='" + city + '\'' +
-                ", state='" + state + '\'' +
-                ", parking=" + parking +
-                '}';
-    }
+//    public User getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
 }

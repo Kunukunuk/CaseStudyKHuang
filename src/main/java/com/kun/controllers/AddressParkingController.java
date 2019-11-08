@@ -3,8 +3,12 @@ package com.kun.controllers;
 import com.kun.models.Address;
 import com.kun.models.Credential;
 import com.kun.models.Parking;
+import com.kun.repositories.AddressRepository;
 import com.kun.repositories.CredentialRepository;
 import com.kun.repositories.ParkingRepository;
+import com.kun.repositories.UserRepository;
+import com.kun.services.AddressService;
+import com.kun.services.ParkingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -20,12 +24,20 @@ import javax.validation.Valid;
 import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Controller
 public class AddressParkingController {
 
     @Autowired
-    ParkingRepository parkingRepository;
+    ParkingService parkingService;
+
+    @Autowired
+    AddressService addressService;
+
+    @Autowired
+    UserRepository userRepository;
 
     @Autowired
     CredentialRepository credentialRepository;
@@ -33,10 +45,8 @@ public class AddressParkingController {
     @RequestMapping(value = "/addparking", method = RequestMethod.GET)
     public ModelAndView getAddParkingForm() {
         ModelAndView mav = new ModelAndView("addparking");
-        System.out.println("going into this");
         mav.addObject("addressFormObj", new Address());
         mav.addObject("parkingFormObj", new Parking());
-        System.out.println("going into that");
         return mav;
     }
 
@@ -48,8 +58,8 @@ public class AddressParkingController {
     }
 
     @RequestMapping(value = "/addressParkingAction", method = RequestMethod.POST)
-    public ModelAndView addParkingObj(@ModelAttribute("parkingFormObj") Parking parking, BindingResult brp,
-                                        Principal principal) {
+    public ModelAndView addParkingObj(@Valid @ModelAttribute("parkingFormObj") Parking parking, BindingResult brp,
+                                      Principal principal) {
 
         ModelAndView mav = null;
 
@@ -62,16 +72,26 @@ public class AddressParkingController {
 
             Credential currentCred = credentialRepository.findByUsername(principal.getName());
             currentCred.getUser().getAddresses().add(newAddress);
+            //newAddress.setUser(currentCred.getUser());
 
             Parking newparking = parking;
 
             newparking.setAddress(newAddress);
             newAddress.getParking().add(newparking);
 
-            parkingRepository.save(newparking);
+            addressService.save(newAddress);
+            userRepository.save(currentCred.getUser());
+
+            Set<Parking> parkings = parkingService.getAllParkings();
+            Set<Address> addresses = new HashSet<Address>();
+            parkings.forEach(p -> addresses.add(p.getAddress()));
+
+//            parkings.forEach(p -> addressService.getAddressById(p.getAddress().getAID()));
 
             mav = new ModelAndView("home");
             mav.addObject("message", "Successfully added the parking");
+            mav.addObject("parkings", parkings);
+            mav.addObject("addresses", addresses);
         }
         return mav;
     }

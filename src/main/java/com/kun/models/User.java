@@ -22,12 +22,10 @@ public class User {
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Address> addresses = new HashSet<Address>();
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "reserve_id")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Reserve> reserves = new HashSet<Reserve>();
 
     public int getUserid() {
@@ -60,6 +58,14 @@ public class User {
 
     public void setAddresses(Set<Address> addresses) {
         this.addresses = addresses;
+    }
+
+    public Set<Reserve> getReserves() {
+        return reserves;
+    }
+
+    public void setReserves(Set<Reserve> reserves) {
+        this.reserves = reserves;
     }
 
     //    @Override

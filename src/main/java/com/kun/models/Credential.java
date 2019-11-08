@@ -24,7 +24,7 @@ public class Credential {
     @Column(name = "authority")
     private Set<Authority> authorities = new HashSet<Authority>();
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "userid")
     private User user;
 
