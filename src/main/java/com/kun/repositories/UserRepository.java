@@ -9,4 +9,6 @@ public interface UserRepository extends CrudRepository<User, Integer> {
 
     User save(User user);
 
+    User findBy(int id);
+
 }
