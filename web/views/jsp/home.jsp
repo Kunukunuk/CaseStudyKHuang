@@ -29,7 +29,7 @@
             <c:if test="${addresses} == null">
                 <label>No parking available</label>
             </c:if>
-            <table class="table table-dark table-striped table-bordered table-hover">
+            <table class="table table-dark table-striped table-bordered table-hover text-center">
                 <thread>
                     <tr>
                         <th scope="col">Address</th>
@@ -39,9 +39,11 @@
                 <tbody>
                     <tr>
                         <c:forEach var="address" items="${addresses}">
-                            <td>${address.street} ${address.city} ${address.state} ${address.zip}</td>
+                            <td><a href="${pageContext.request.contextPath}/parkingdetails">
+                                    ${address.street} ${address.city} ${address.state} ${address.zip}
+                            </a></td>
+                            <td>${address.parking.size()}</td>
                         </c:forEach>
-                        <td>${parkings.size()}</td>
                     </tr>
                 </tbody>
             </table>

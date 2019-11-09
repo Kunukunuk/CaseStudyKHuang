@@ -34,9 +34,6 @@ public class Address {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = Parking.class)
     private Set<Parking> parking = new HashSet<Parking>();
 
-//    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-//    private User user;
-
     public int getAID() {
         return AID;
     }
@@ -85,11 +82,4 @@ public class Address {
         this.parking = parking;
     }
 
-//    public User getUser() {
-//        return user;
-//    }
-//
-//    public void setUser(User user) {
-//        this.user = user;
-//    }
 }

@@ -4,6 +4,7 @@ import com.kun.models.Address;
 import com.kun.models.Credential;
 import com.kun.models.Parking;
 import com.kun.repositories.CredentialRepository;
+import com.kun.services.AddressService;
 import com.kun.services.ParkingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,9 @@ public class MenuController {
     @Autowired
     ParkingService parkingService;
 
+    @Autowired
+    AddressService addressService;
+
     String name;
 
     @RequestMapping(value = {"/","/home"}, method = RequestMethod.GET)
@@ -37,13 +41,10 @@ public class MenuController {
             mav.addObject("user", currentCredential.getUser());
 
         }
-        Set<Parking> parkings = parkingService.getAllParkings();
+        Set<Address> addresses = addressService.getAllAddresses();
 
-        if (parkings.size() > 0) {
-            Set<Address> addresses = new HashSet<Address>();
-            parkings.forEach(p -> addresses.add(p.getAddress()));
+        if (addresses.size() > 0) {
 
-            mav.addObject("parkings", parkings);
             mav.addObject("addresses", addresses);
         } else {
 
