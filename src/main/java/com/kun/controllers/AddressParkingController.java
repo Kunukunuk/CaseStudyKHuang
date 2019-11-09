@@ -95,4 +95,12 @@ public class AddressParkingController {
         }
         return mav;
     }
+
+    @RequestMapping(value = "/parkingdetails")
+    public ModelAndView getParkingDetails() {
+
+        ModelAndView mav = new ModelAndView("parkingdetails");
+
+        return mav;
+    }
 }
