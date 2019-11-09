@@ -24,6 +24,8 @@ public class MenuController {
     @Autowired
     ParkingService parkingService;
 
+    String name;
+
     @RequestMapping(value = {"/","/home"}, method = RequestMethod.GET)
     public ModelAndView getHome(Principal principal) {
         ModelAndView mav = new ModelAndView("home");
@@ -31,6 +33,7 @@ public class MenuController {
         if (principal != null) {
             Credential currentCredential = credentialRepository.findByUsername(principal.getName());
             mav.addObject("message", "hi " + currentCredential.getUser().getName());
+            name =  currentCredential.getUser().getName();
             mav.addObject("user", currentCredential.getUser());
 
         }

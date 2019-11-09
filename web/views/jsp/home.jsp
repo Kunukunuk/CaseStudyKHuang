@@ -26,15 +26,25 @@
             ${message}
             <h3>List of parking available:</h3>
             ${noparking}
-            <c:if test="${parkings} == null">
+            <c:if test="${addresses} == null">
                 <label>No parking available</label>
             </c:if>
-            <c:forEach var="address" items="${addresses}">
-                <label>${address.street} ${address.city} ${address.state} ${address.zip}</label>
-            </c:forEach>
-            <c:forEach var="parking" items="${parkings}">
-                <label>${parking.price} ${parking.length} ${parking.width} ${parking.availableDate} ${parking.endDate} ${parking.creationDate}</label>
-            </c:forEach>
+            <table class="table table-dark table-striped table-bordered table-hover">
+                <thread>
+                    <tr>
+                        <th scope="col">Address</th>
+                        <th scope="col">Number Of Parking's</th>
+                    </tr>
+                </thread>
+                <tbody>
+                    <tr>
+                        <c:forEach var="address" items="${addresses}">
+                            <td>${address.street} ${address.city} ${address.state} ${address.zip}</td>
+                        </c:forEach>
+                        <td>${parkings.size()}</td>
+                    </tr>
+                </tbody>
+            </table>
             <div class="border border-danger">
                 mapppp
             </div>
