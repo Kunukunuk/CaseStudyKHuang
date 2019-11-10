@@ -12,12 +12,10 @@ import com.kun.services.ParkingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -29,9 +27,6 @@ import java.util.Set;
 
 @Controller
 public class AddressParkingController {
-
-    @Autowired
-    ParkingService parkingService;
 
     @Autowired
     AddressService addressService;
@@ -82,25 +77,30 @@ public class AddressParkingController {
             addressService.save(newAddress);
             userRepository.save(currentCred.getUser());
 
-            Set<Parking> parkings = parkingService.getAllParkings();
-            Set<Address> addresses = new HashSet<Address>();
-            parkings.forEach(p -> addresses.add(p.getAddress()));
+//            Set<Parking> parkings = parkingService.getAllParkings();
+//            Set<Address> addresses = new HashSet<Address>();
+//            parkings.forEach(p -> addresses.add(p.getAddress()));
 
-//            parkings.forEach(p -> addressService.getAddressById(p.getAddress().getAID()));
+            Set<Address> addresses = addressService.getAllAddresses();
 
             mav = new ModelAndView("home");
             mav.addObject("message", "Successfully added the parking");
-            mav.addObject("parkings", parkings);
+
             mav.addObject("addresses", addresses);
         }
         return mav;
     }
 
-    @RequestMapping(value = "/parkingdetails")
-    public ModelAndView getParkingDetails() {
+    @RequestMapping(value = "/parkingdetails", method = RequestMethod.GET)
+    public ModelAndView getParkingDetails(@RequestParam("aid") int id) {
 
         ModelAndView mav = new ModelAndView("parkingdetails");
 
+        Address address = addressService.getAddressById(id);
+
+        mav.addObject("address", address);
+        mav.addObject("parkings", address.getParking());
         return mav;
     }
+
 }

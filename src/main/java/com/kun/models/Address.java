@@ -1,5 +1,8 @@
 package com.kun.models;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -81,5 +84,9 @@ public class Address {
     public void setParking(Set<Parking> parking) {
         this.parking = parking;
     }
+
+//    public String toString() {
+//        return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+//    }
 
 }

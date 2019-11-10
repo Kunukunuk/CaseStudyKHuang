@@ -2,7 +2,6 @@ package com.kun.controllers;
 
 import com.kun.models.Address;
 import com.kun.models.Credential;
-import com.kun.models.Parking;
 import com.kun.repositories.CredentialRepository;
 import com.kun.services.AddressService;
 import com.kun.services.ParkingService;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
-import java.util.HashSet;
 import java.util.Set;
 
 @Controller

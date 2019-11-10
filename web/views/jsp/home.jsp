@@ -39,7 +39,10 @@
                 <tbody>
                     <tr>
                         <c:forEach var="address" items="${addresses}">
-                            <td><a href="${pageContext.request.contextPath}/parkingdetails">
+<%--                            ${pageContext.request.contextPath}/parkingdetails/${address.AID}
+                                "<c:url value='/parkingdetails/${address.AID}' />"
+--%>
+                            <td><a href="${pageContext.request.contextPath}/parkingdetails?aid=${address.AID}">
                                     ${address.street} ${address.city} ${address.state} ${address.zip}
                             </a></td>
                             <td>${address.parking.size()}</td>
