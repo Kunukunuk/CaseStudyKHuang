@@ -1,5 +1,6 @@
 package com.kun.models;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.validator.constraints.CreditCardNumber;
 
 import javax.persistence.*;
@@ -17,7 +18,8 @@ public class Payment {
     @Column(name = "payid", nullable = false)
     private int payID;
 
-    @FutureOrPresent
+    @CreationTimestamp
+    @Temporal(TemporalType.DATE)
     @Column(name = "dateofpayment", nullable = false)
     private Date dateOfPayment;
 
