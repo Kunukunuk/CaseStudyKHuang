@@ -4,7 +4,6 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.validator.constraints.CreditCardNumber;
 
 import javax.persistence.*;
-import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import java.util.Date;
@@ -36,12 +35,10 @@ public class Payment {
     @Column(name = "nameoncard", nullable = false)
     private String nameOnCard;
 
+    @NotEmpty(message = "Can not be empty")
     @Min(value = 0, message = "Must be positive")
     @Column(name = "price", nullable = false)
     private int price;
-
-    @Column(name = "paysuccess", nullable = false)
-    private boolean success;
 
     public int getPayID() {
         return payID;
@@ -90,14 +87,5 @@ public class Payment {
     public void setPrice(int price) {
         this.price = price;
     }
-
-    public boolean isSuccess() {
-        return success;
-    }
-
-    public void setSuccess(boolean success) {
-        this.success = success;
-    }
-
 
 }

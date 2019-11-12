@@ -45,7 +45,7 @@
                     </tr>
                     <tr>
 <%--                        <th scope="row"></th>--%>
-                        <td colspan="2"><a href="#">Reserve</a></td>
+                        <td colspan="2"><a href="${pageContext.request.contextPath}/reserveform">Reserve</a></td>
                     </tr>
                 </c:forEach>
 <%--                <c:forEach var="address" items="${addresses}">--%>

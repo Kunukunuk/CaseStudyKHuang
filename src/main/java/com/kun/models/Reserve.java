@@ -24,14 +24,14 @@ public class Reserve {
     @Column(name = "reserveDate")
     private Date creationDate;
 
-    @NotEmpty(message = "Can not be empty")
-    @Min(value = 0, message = "Must be positive")
-    @Column(name = "price", nullable = false)
-    private int price;
-
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "payid", nullable = false)
     private Payment payment;
+
+    @NotEmpty
+    @OneToOne
+    @JoinColumn(name = "renter", nullable = false)
+    private User user;
 
     public int getRID() {
         return RID;
@@ -49,14 +49,6 @@ public class Reserve {
         this.creationDate = creationDate;
     }
 
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
     public Payment getPayment() {
         return payment;
     }
@@ -65,4 +57,11 @@ public class Reserve {
         this.payment = payment;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

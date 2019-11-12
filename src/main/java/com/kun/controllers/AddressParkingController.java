@@ -3,6 +3,7 @@ package com.kun.controllers;
 import com.kun.models.Address;
 import com.kun.models.Credential;
 import com.kun.models.Parking;
+import com.kun.models.Reserve;
 import com.kun.repositories.AddressRepository;
 import com.kun.repositories.CredentialRepository;
 import com.kun.repositories.ParkingRepository;
@@ -100,6 +101,8 @@ public class AddressParkingController {
 
         mav.addObject("address", address);
         mav.addObject("parkings", address.getParking());
+
+//        mav.addObject("reserveFormObj", new Reserve());
         return mav;
     }
 
