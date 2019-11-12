@@ -29,6 +29,7 @@
             <c:if test="${addresses} == null">
                 <label>No parking available</label>
             </c:if>
+            <c:if test="${addresses} != null">
             <table class="table table-dark table-striped table-bordered table-hover text-center">
                 <thread>
                     <tr>
@@ -39,9 +40,6 @@
                 <tbody>
                     <tr>
                         <c:forEach var="address" items="${addresses}">
-<%--                            ${pageContext.request.contextPath}/parkingdetails/${address.AID}
-                                "<c:url value='/parkingdetails/${address.AID}' />"
---%>
                             <td><a href="${pageContext.request.contextPath}/parkingdetails?aid=${address.AID}">
                                     ${address.street} ${address.city} ${address.state} ${address.zip}
                             </a></td>
@@ -50,9 +48,7 @@
                     </tr>
                 </tbody>
             </table>
-            <div class="border border-danger">
-                mapppp
-            </div>
+            </c:if>
         </div>
     </div>
 </div>

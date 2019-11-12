@@ -14,7 +14,7 @@
 <body>
 <jsp:include page="boostrap.jsp"></jsp:include>
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Case Study</a>
+    <a class="navbar-brand" href="#">Parking</a>
     <ul class="navbar-nav mr-auto">
         <li class="nav-item">
             <a class="nav-link" href="${pageContext.request.contextPath}/home">Home</a>
