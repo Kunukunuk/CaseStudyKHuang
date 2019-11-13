@@ -24,12 +24,12 @@
         <div class="col-sm-10 offset-sm-1 text-center">
             <h1>Welcome to the app</h1>
             ${message}
-            <h3>List of parking available:</h3>
             ${noparking}
-            <c:if test="${addresses} == null">
+            <c:if test="${addresses == null}">
                 <label>No parking available</label>
             </c:if>
-            <c:if test="${addresses} != null">
+            <c:if test="${addresses.size() != null}" >
+                <h3>List of parking available:</h3>
             <table class="table table-dark table-striped table-bordered table-hover text-center">
                 <thread>
                     <tr>

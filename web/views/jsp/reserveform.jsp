@@ -22,6 +22,7 @@
             <form:form id="reserveForm" action="${pageContext.request.contextPath}/reserveParkingAction"
                        modelAttribute="reserveFormObj" method="post">
                 <h1>Reserve Parking:</h1>
+                ${message}
                 <div class="form-group">
                     <label>Street</label>
                     <form:select path="payment.cardType">

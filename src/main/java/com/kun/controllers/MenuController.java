@@ -26,8 +26,6 @@ public class MenuController {
     @Autowired
     AddressService addressService;
 
-    String name;
-
     @RequestMapping(value = {"/","/home"}, method = RequestMethod.GET)
     public ModelAndView getHome(Principal principal) {
         ModelAndView mav = new ModelAndView("home");
@@ -35,7 +33,6 @@ public class MenuController {
         if (principal != null) {
             Credential currentCredential = credentialRepository.findByUsername(principal.getName());
             mav.addObject("message", "hi " + currentCredential.getUser().getName());
-            name =  currentCredential.getUser().getName();
             mav.addObject("user", currentCredential.getUser());
 
         }
@@ -44,6 +41,7 @@ public class MenuController {
         if (addresses.size() > 0) {
 
             mav.addObject("addresses", addresses);
+
         } else {
 
             mav.addObject("noparking", "No parking available");

@@ -13,7 +13,7 @@
 </head>
 <body>
 <jsp:include page="boostrap.jsp"></jsp:include>
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark border-bottom border-danger">
     <a class="navbar-brand" href="#">Parking</a>
     <ul class="navbar-nav mr-auto">
         <li class="nav-item">

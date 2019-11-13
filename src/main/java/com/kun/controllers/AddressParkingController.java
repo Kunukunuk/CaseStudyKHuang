@@ -3,17 +3,12 @@ package com.kun.controllers;
 import com.kun.models.Address;
 import com.kun.models.Credential;
 import com.kun.models.Parking;
-import com.kun.models.Reserve;
-import com.kun.repositories.AddressRepository;
 import com.kun.repositories.CredentialRepository;
-import com.kun.repositories.ParkingRepository;
 import com.kun.repositories.UserRepository;
 import com.kun.services.AddressService;
-import com.kun.services.ParkingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +18,6 @@ import javax.validation.Valid;
 import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
 
 @Controller
@@ -63,12 +57,11 @@ public class AddressParkingController {
             mav = new ModelAndView("redirect:/addparking");
             mav.addObject("message", "Something went wrong");
         } else {
-            System.out.println("trying to create parking");
+
             Address newAddress = parking.getAddress();
 
             Credential currentCred = credentialRepository.findByUsername(principal.getName());
             currentCred.getUser().getAddresses().add(newAddress);
-            //newAddress.setUser(currentCred.getUser());
 
             Parking newparking = parking;
 
@@ -77,10 +70,6 @@ public class AddressParkingController {
 
             addressService.save(newAddress);
             userRepository.save(currentCred.getUser());
-
-//            Set<Parking> parkings = parkingService.getAllParkings();
-//            Set<Address> addresses = new HashSet<Address>();
-//            parkings.forEach(p -> addresses.add(p.getAddress()));
 
             Set<Address> addresses = addressService.getAllAddresses();
 

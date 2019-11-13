@@ -1,4 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: kunhuang
@@ -6,6 +5,7 @@
   Time: 4:39 PM
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -44,19 +44,14 @@
                         <td>${parking.price}</td>
                     </tr>
                     <tr>
-<%--                        <th scope="row"></th>--%>
+                        <c:if test="${pageContext.request.userPrincipal != null}" >
                         <td colspan="2"><a href="${pageContext.request.contextPath}/reserveform">Reserve</a></td>
+                        </c:if>
+                        <c:if test="${pageContext.request.userPrincipal == null}" >
+                            <td colspan="2"><a href="${pageContext.request.contextPath}/login">Login</a></td>
+                        </c:if>
                     </tr>
                 </c:forEach>
-<%--                <c:forEach var="address" items="${addresses}">--%>
-<%--                    <tr>--%>
-<%--                        <th scope="row"></th>--%>
-<%--                        <td><a href="${pageContext.request.contextPath}/parkingdetails">--%>
-<%--                                ${address.street} ${address.city} ${address.state} ${address.zip}--%>
-<%--                        </a></td>--%>
-<%--                        <td>${address.parking.size()}</td>--%>
-<%--                    </tr>--%>
-<%--                </c:forEach>--%>
                 </tbody>
             </table>
         </div>

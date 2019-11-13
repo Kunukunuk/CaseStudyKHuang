@@ -59,6 +59,10 @@ public class Parking {
     @JoinColumn(name = "addressid", nullable = false)
     private Address address;
 
+    @OneToOne
+    @JoinColumn(name = "reservedBy")
+    private User reservedBy;
+
     public int getPID() {
         return PID;
     }
@@ -121,6 +125,14 @@ public class Parking {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public User getReservedBy() {
+        return reservedBy;
+    }
+
+    public void setReservedBy(User reservedBy) {
+        this.reservedBy = reservedBy;
     }
 
     public String toString() {
