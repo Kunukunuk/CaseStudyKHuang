@@ -45,7 +45,7 @@
                     </tr>
                     <tr>
                         <c:if test="${pageContext.request.userPrincipal != null}" >
-                        <td colspan="2"><a href="${pageContext.request.contextPath}/reserveform">Reserve</a></td>
+                        <td colspan="2"><a href="${pageContext.request.contextPath}/reserveform?pid=${parking.PID}">Reserve</a></td>
                         </c:if>
                         <c:if test="${pageContext.request.userPrincipal == null}" >
                             <td colspan="2"><a href="${pageContext.request.contextPath}/login">Login</a></td>

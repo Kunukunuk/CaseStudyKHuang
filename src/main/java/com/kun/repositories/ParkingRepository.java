@@ -9,4 +9,6 @@ public interface ParkingRepository extends CrudRepository<Parking, Integer> {
 
     Parking save(Parking parking);
 
+    Parking findById(int id);
+
 }

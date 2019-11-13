@@ -24,7 +24,6 @@
                 <h1>Reserve Parking:</h1>
                 ${message}
                 <div class="form-group">
-                    <label>Street</label>
                     <form:select path="payment.cardType">
                         <form:option value="visa">Visa</form:option>
                         <form:option value="discover">Discover</form:option>
@@ -33,21 +32,21 @@
                     </form:select>
                 </div>
                 <div class="form-group">
-                    <label>Name</label>
+                    <form:label path="payment.nameOnCard">Name</form:label>
                     <form:input type="text" name="name" path="payment.nameOnCard" class="form-control text-center" value="city" />
                     <form:errors path="payment.nameOnCard" />
                 </div>
                 <div class="form-group">
-                    <label>Credit Card Number</label>
+                    <form:label path="payment.cardNumber">Credit Card Number</form:label>
                     <form:input type="text" name="cardnumber" path="payment.cardNumber" class="form-control text-center" value="ny" />
                     <form:errors path="payment.cardNumber" />
                 </div>
                 <div class="form-group">
-                    <label>Price:</label>
-<%--                    <form:input type="number" name="price" path="price" class="form-control text-center" value="12" />--%>
+                    <form:label path="payment.price">Price: ${parking.price}</form:label>
+                    <form:input type="hidden" name="price" path="payment.price" class="form-control text-center" value="${parking.price}" />
                 </div>
 
-                <button name="reserveParking" id="reserveParking">Reserve</button>
+                <button name="reserveParking" id="reserveParking" disabled>Reserve(Coming Soon)</button>
             </form:form>
         </div>
     </div>

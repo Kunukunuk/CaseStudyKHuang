@@ -13,11 +13,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.security.Principal;
-import java.util.Set;
 
 @Controller
 public class ReserveController {
@@ -35,11 +35,13 @@ public class ReserveController {
     ParkingService parkingService;
 
     @RequestMapping(value = "/reserveform", method = RequestMethod.GET)
-    public ModelAndView getReserveForm() {
+    public ModelAndView getReserveForm(@RequestParam("pid") int id) {
 
         ModelAndView mav = new ModelAndView("reserveform");
+
+        Parking parking = parkingService.findById(id);
         mav.addObject("reserveFormObj", new Reserve());
-//        mav.addObject("parking", parking);
+        mav.addObject("parking", parking);
 
         return mav;
     }
@@ -61,6 +63,7 @@ public class ReserveController {
             currentCred.getUser().getReserves().add(reserve1);
             reserve1.setUser(currentCred.getUser());
 
+
 //            Set<Parking> parkings = parkingService.getAllParkings();
 
 //            parking.setReservedBy(currentCred.getUser());
@@ -78,4 +81,5 @@ public class ReserveController {
 
         return mav;
     }
+
 }

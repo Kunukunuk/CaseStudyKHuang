@@ -18,6 +18,10 @@ public class ParkingService {
         parkingRepository.save(parking);
     }
 
+    public Parking findById(int id) {
+        return parkingRepository.findById(id);
+    }
+
     public Set<Parking> getAllParkings() {
         Set<Parking> parkings = new HashSet<Parking>();
         parkingRepository.findAll().forEach(parkings::add);
