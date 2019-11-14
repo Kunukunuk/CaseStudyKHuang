@@ -54,7 +54,7 @@ public class AddressParkingController {
         ModelAndView mav = null;
 
         if (brp.hasErrors()) {
-            mav = new ModelAndView("redirect:/addparking");
+            mav = new ModelAndView("addparking");
             mav.addObject("message", "Something went wrong");
         } else {
 
