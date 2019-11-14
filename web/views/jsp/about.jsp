@@ -15,6 +15,6 @@
 <div id="header">
     <jsp:include page="menu.jsp"></jsp:include>
 </div>
-This is the about page
+Parking is an application used by people to rent their unused parking spot to other people
 </body>
 </html>

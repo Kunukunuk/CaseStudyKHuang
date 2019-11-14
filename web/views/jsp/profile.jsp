@@ -25,6 +25,10 @@
             Email: ${user.username}
             <br>
         </div>
+        <div class="col-sm-10 offset-sm-1 text-center">
+            <h2>History</h2>
+                coming soon
+        </div>
     </div>
 </div>
 
