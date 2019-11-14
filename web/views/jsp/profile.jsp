@@ -27,7 +27,12 @@
         </div>
         <div class="col-sm-10 offset-sm-1 text-center">
             <h2>History</h2>
-                coming soon
+                Coming Soon
+        </div>
+
+        <div class="col-sm-10 offset-sm-1 text-center">
+            <h2>Edit User</h2>
+            Under Construction
         </div>
     </div>
 </div>
