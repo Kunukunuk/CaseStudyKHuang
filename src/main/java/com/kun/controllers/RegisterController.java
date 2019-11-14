@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
+
 @Controller
 public class RegisterController {
 
@@ -21,7 +23,7 @@ public class RegisterController {
     CredentialRepository credentialRepository;
 
     @RequestMapping(value = "processCredentials", method = RequestMethod.POST)
-    public ModelAndView getRegistrationForm(@ModelAttribute("userRegistrationObj") Credential credential, BindingResult br,
+    public ModelAndView getRegistrationForm(@Valid @ModelAttribute("userRegistrationObj") Credential credential, BindingResult br,
                                             @RequestParam("confirmPassword") String confirmPassword) {
         ModelAndView mav = null;
         Credential newCredential = credential;
