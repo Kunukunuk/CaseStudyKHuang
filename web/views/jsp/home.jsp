@@ -24,7 +24,6 @@
         <div class="col-sm-10 offset-sm-1 text-center">
             <h1>Welcome to the app</h1>
             ${message}
-            ${noparking}
             <c:if test="${addresses == null}">
                 <label>No parking available</label>
             </c:if>
@@ -38,14 +37,14 @@
                     </tr>
                 </thread>
                 <tbody>
+                <c:forEach var="address" items="${addresses}">
                     <tr>
-                        <c:forEach var="address" items="${addresses}">
-                            <td><a href="${pageContext.request.contextPath}/parkingdetails?aid=${address.AID}">
-                                    ${address.street} ${address.city} ${address.state} ${address.zip}
-                            </a></td>
-                            <td>${address.parking.size()}</td>
-                        </c:forEach>
+                        <td><a href="${pageContext.request.contextPath}/parkingdetails?aid=${address.AID}">
+                                ${address.street} ${address.city} ${address.state} ${address.zip}
+                        </a></td>
+                        <td>${address.parking.size()}</td>
                     </tr>
+                </c:forEach>
                 </tbody>
             </table>
             </c:if>
