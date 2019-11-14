@@ -23,6 +23,11 @@
             <table class="table table-dark table-bordered text-center">
                 <tbody>
                 <c:forEach var="parking" items="${parkings}">
+                    <c:if test="${owner == true}" >
+                        <tr class="text-right">
+                            <td colspan="2"><a href="#">Delete</a></td>
+                        </tr>
+                    </c:if>
                     <tr>
                         <th scope="row">create time:</th>
                         <td>${parking.creationDate}</td>

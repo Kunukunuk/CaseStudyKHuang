@@ -103,9 +103,19 @@ public class AddressParkingController {
     }
 
     @RequestMapping(value = "/parkingdetails", method = RequestMethod.GET)
-    public ModelAndView getParkingDetails(@RequestParam("aid") int id) {
+    public ModelAndView getParkingDetails(@RequestParam("aid") int id, Principal principal) {
 
         ModelAndView mav = new ModelAndView("parkingdetails");
+
+        Credential owner = null;
+
+
+        if (principal != null) {
+            owner = credentialRepository.findByUsername(principal.getName());
+            if (owner.getUsername().equals(principal.getName())) {
+                mav.addObject("owner", true);
+            }
+        }
 
         Address address = addressService.getAddressById(id);
 
