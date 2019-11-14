@@ -39,7 +39,7 @@ public class MenuController {
         Set<Address> addresses = addressService.getAllAddresses();
 
         if (addresses.size() > 0) {
-
+            
             mav.addObject("addresses", addresses);
 
         } else {
