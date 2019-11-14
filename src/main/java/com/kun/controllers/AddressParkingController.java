@@ -18,6 +18,7 @@ import javax.validation.Valid;
 import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Optional;
 import java.util.Set;
 
 @Controller
@@ -61,18 +62,35 @@ public class AddressParkingController {
             mav.addObject("message", "End date cannot be earlier than available date");
         } else {
 
+            Address findAdd = parking.getAddress();
             Address newAddress = parking.getAddress();
+            Set<Address> allAddress = addressService.getAllAddresses();
+
+            Optional optionalAddress = allAddress.stream().filter(a -> a.getCity().equals(findAdd.getCity()) &&
+                    a.getState().equals(findAdd.getState()) && a.getStreet().equals(findAdd.getStreet()) &&
+                    a.getZip().equals(findAdd.getZip()) ).findAny();
 
             Credential currentCred = credentialRepository.findByUsername(principal.getName());
-            currentCred.getUser().getAddresses().add(newAddress);
 
-            Parking newparking = parking;
+            if (optionalAddress.isPresent()) {
 
-            newparking.setAddress(newAddress);
-            newAddress.getParking().add(newparking);
+                newAddress = (Address) optionalAddress.get();
+                parking.setAddress(newAddress);
+                newAddress.getParking().add(parking);
 
-            addressService.save(newAddress);
-            userRepository.save(currentCred.getUser());
+                addressService.save(newAddress);
+
+            } else {
+                currentCred.getUser().getAddresses().add(newAddress);
+
+                Parking newparking = parking;
+
+                newparking.setAddress(newAddress);
+                newAddress.getParking().add(newparking);
+
+                addressService.save(newAddress);
+                userRepository.save(currentCred.getUser());
+            }
 
             Set<Address> addresses = addressService.getAllAddresses();
 
