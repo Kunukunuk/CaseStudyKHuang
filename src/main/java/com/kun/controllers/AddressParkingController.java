@@ -56,6 +56,9 @@ public class AddressParkingController {
         if (brp.hasErrors()) {
             mav = new ModelAndView("addparking");
             mav.addObject("message", "Something went wrong");
+        } else if ( parking.getAvailableDate().compareTo(parking.getEndDate()) > 0 ) {
+            mav = new ModelAndView("addparking");
+            mav.addObject("message", "End date cannot be earlier than available date");
         } else {
 
             Address newAddress = parking.getAddress();
